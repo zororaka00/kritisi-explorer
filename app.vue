@@ -53,7 +53,7 @@
           </template>
           <template #score-data="{ row }">
             <span :class="row.score > 50 ? 'text-green-600' : 'text-red-600'">
-              {{ row.score }}
+              {{ row.score }} / 100
             </span>
           </template>
           <template #actions-data="{ row }">
@@ -102,7 +102,7 @@
             <UFormGroup label="Security Score">
               <UInput
                 color="gray" variant="outline"
-                :model-value="contractStore.dataDetailContract?.score"
+                :model-value="`${contractStore.dataDetailContract?.score} / 100`"
                 readonly
               />
             </UFormGroup>
