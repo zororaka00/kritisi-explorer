@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
                 status: 200,
                 message: "Success",
                 data: {
-                    id: contract?.id,
+                    id: Number(contract?.id),
                     contractAddress: contract?.contractAddress,
                     contractName: contract?.contractName,
                     score: contract?.score,

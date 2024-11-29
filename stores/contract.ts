@@ -22,6 +22,7 @@ export interface IDetailContract {
 
 export const useContractStore = defineStore('contract', {
   state: () => ({
+    isModalOpen: false,
     isLoadingData: false,
     currentPage: 1,
     totalPages: 1,
@@ -59,7 +60,10 @@ export const useContractStore = defineStore('contract', {
           if (res.status == 200) {
             this.currentPage = res.currentPage;
             this.totalPages = res.totalPages;
-            this.contracts = res.data?.length > 0 ? res.data : [];
+            this.contracts = res.data?.length > 0 ? res.data.map((data: any) => ({
+              ...data,
+              date: general.dateToLocale(data.date)
+            })) : [];
             this.isLoadingData = false;
           } else {
             general.showToast('error', res.message);
@@ -75,8 +79,11 @@ export const useContractStore = defineStore('contract', {
       $fetch(`/api/detail?contractAddress=${contractAddress}`)
         .then((res: any) => {
           if (res.status == 200) {
-            console.log(res);
-            this.dataDetailContract = res.data;
+            this.dataDetailContract = {
+              ...res.data,
+              date: general.dateToLocale(res.data.date)
+            };
+            this.isModalOpen = true;
           } else {
             general.showToast('error', res.message);
           }

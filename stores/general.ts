@@ -3,6 +3,9 @@ import { defineStore } from 'pinia'
 export const useGeneralStore = defineStore('general', {
   state: () => ({ }),
   actions: {
+    dateToLocale(date: string) {
+      return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    },
     showToast(type: 'success' | 'error' | 'info', message: string) {
       const toast = useToast();
       toast.add({
