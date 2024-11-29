@@ -1,0 +1,25 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxt/ui": "^2.19.2",
+    "@pinia/nuxt": "^0.7.0",
+    "nuxt": "^3.14.1592",
+    "nuxt-cron": "^1.7.0",
+    "prisma": "^6.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.0.0",
+    "nuxt-api-shield": "^0.8.0",
+    "sol-type-check": "^1.0.2"
+  }
+}
