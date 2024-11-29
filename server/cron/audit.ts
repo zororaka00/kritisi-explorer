@@ -1,5 +1,5 @@
 import { defineCronHandler } from '#nuxt/cron';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, TypeContract } from '@prisma/client';
 
 import { PROMPT_AUDIT } from '~/CONSTANT';
 import { AuditResult } from '~/types';
@@ -13,7 +13,7 @@ export default defineCronHandler('everyMinute', async () => {
             where: {
                 isScanned: true,
                 score: null,
-                isProxy: false
+                type: TypeContract.OTHER
             }
         });
         if (contracts.length > 0) {

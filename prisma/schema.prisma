@@ -13,17 +13,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum TypeContract {
+  PROXY
+  IMPLEMENTATION
+  OTHER
+}
+
 model Contract {
-  id                BigInt   @id @default(autoincrement())
-  contractAddress   String   @unique
+  id                BigInt          @id @default(autoincrement())
+  fromContractProxy String?
+  contractAddress   String          @unique
   contractName      String?
   dataObject        Json?
   securityObject    Json?
   score             Int?
-  isProxy           Boolean? @default(false)
-  isScanned         Boolean? @default(false)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  type              TypeContract?
+  isScanned         Boolean?        @default(false)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
 
   @@map("tb_contract")
 }

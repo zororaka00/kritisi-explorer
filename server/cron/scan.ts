@@ -1,5 +1,5 @@
 import { defineCronHandler } from '#nuxt/cron';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, TypeContract } from '@prisma/client';
 
 var isLoop = false;
 export default defineCronHandler('everyMinute', async () => {
@@ -32,7 +32,7 @@ export default defineCronHandler('everyMinute', async () => {
                   data: { 
                     contractName: response.result[0].ContractName,
                     dataObject: response.result,
-                    isProxy: response.result[0].Proxy == '1',
+                    type: response.result[0].Proxy == '1' ? TypeContract.PROXY : TypeContract.OTHER,
                     isScanned: true
                   }
                 });
