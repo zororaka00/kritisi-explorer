@@ -5,7 +5,7 @@ import { PROMPT_AUDIT } from '~/CONSTANT';
 import { AuditResult } from '~/types';
 
 var isLoop = false;
-export default defineCronHandler('everyMinute', async () => {
+export default defineCronHandler('everyFiveMinutes', async () => {
     if (!isLoop) {
         isLoop = true;
         const prisma = new PrismaClient();

@@ -2,7 +2,7 @@ import { defineCronHandler } from '#nuxt/cron';
 import { PrismaClient, TypeContract } from '@prisma/client';
 
 var isLoop = false;
-export default defineCronHandler('everyMinute', async () => {
+export default defineCronHandler('everyFiveMinutes', async () => {
   if (!isLoop) {
     isLoop = true;
     const prisma = new PrismaClient();
