@@ -64,13 +64,13 @@ export default defineEventHandler(async (event) => {
             currentPage: page,
             limit: limit,
             totalPages: Math.ceil(allData[1] / limit),
-            data: allData[0].map((contract) => ({
+            data: allData[0] ? allData[0].map((contract) => ({
                 id: Number(contract.id),
                 contractAddress: contract.contractAddress,
                 contractName: contract.contractName,
                 score: contract.score,
                 date: contract.createdAt
-            }))
+            })) : []
         };
     } catch (error) {
         return {

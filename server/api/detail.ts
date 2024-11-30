@@ -20,14 +20,14 @@ export default defineEventHandler(async (event) => {
             return {
                 status: 200,
                 message: "Success",
-                data: {
+                data: contract ? {
                     id: Number(contract?.id),
                     contractAddress: contract?.contractAddress,
                     contractName: contract?.contractName,
                     score: contract?.score,
                     securityObject: contract?.securityObject,
                     date: contract?.createdAt
-                }
+                } : null
             };
         } else {
             return {
