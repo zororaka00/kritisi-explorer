@@ -2,23 +2,7 @@ import { defineStore } from 'pinia';
 import { isAddress } from 'sol-type-check';
 
 import { useGeneralStore } from './general';
-
-export interface IContract {
-  id: number,
-  contractAddress: `0x${string}`,
-  contractName: string,
-  score: number,
-  date: string
-}
-
-export interface IDetailContract {
-  id: number,
-  contractAddress: `0x${string}`,
-  contractName: string,
-  score: number,
-  securityObject: string,
-  date: string
-}
+import type { IContract, IDetailContract } from '@/types';
 
 export const useContractStore = defineStore('contract', {
   state: () => ({
