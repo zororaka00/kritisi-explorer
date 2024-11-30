@@ -1,7 +1,10 @@
 {
-  "name": "nuxt-app",
+  "name": "kritisi-explorer",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
+  "author": "Raka Widhi Antoro <rakawidhiantoro@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -14,7 +17,6 @@
     "@nuxt/ui": "^2.19.2",
     "@pinia/nuxt": "^0.7.0",
     "nuxt": "^3.14.1592",
-    "nuxt-cron": "^1.7.0",
     "prisma": "^6.0.0"
   },
   "dependencies": {

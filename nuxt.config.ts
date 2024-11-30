@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-cron", "nuxt-api-shield"],
+  modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-api-shield"],
   runtimeConfig: {
     databaseUrl: process.env.DATABASE_URL,
     arbiscanApiKey: process.env.ARBISCAN_API_KEY,
