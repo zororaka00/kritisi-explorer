@@ -1,6 +1,6 @@
 # Kritisi Explorer
 
-Kritisi Explorer is a web application that allows users to explore and analyze smart contracts on the Ethereum blockchain. It provides a user-friendly interface for viewing contract details, auditing results, and accessing security reports.
+Kritisi Explorer is a web application that allows users to explore and analyze smart contracts on the Arbitrum Chain. It provides a user-friendly interface for viewing contract details, auditing results, and accessing security reports.
 
 ## Setup
 
