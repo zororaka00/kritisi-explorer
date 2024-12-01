@@ -5,7 +5,6 @@ export default defineEventHandler(async (event) => {
   const contracts = await prisma.contract.findMany({
     where: {
       isScanned: true,
-      score: null,
       type: TypeContract.OTHER,
       contractCreator: null,
       contractTxHash: null
@@ -31,7 +30,7 @@ export default defineEventHandler(async (event) => {
       } else {
         return "Error";
       }
-    }).catch((error) => {
+    }).catch(() => {
       return "Error";
     });
   } else {

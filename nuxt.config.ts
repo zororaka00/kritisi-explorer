@@ -13,7 +13,7 @@ export default defineNuxtConfig({
       duration: 60,
       ban: 60
     },
-    routes: ["/api/add", "/api/cron/scan", "/api/cron/audit"]
+    routes: ["/api/add", "/api/cron/scan", "/api/cron/audit", "/api/cron/detail"]
   },
   compatibilityDate: "2024-11-27"
 })
