@@ -11,7 +11,7 @@
       />
 
       <h1 class="text-3xl font-bold mb-8 text-center">Security Audit Explorer for Solidity</h1>
-      <a class="mb-8 flex justify-center" href="https://www.producthunt.com/posts/kritisi?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-kritisi" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=665521&theme=light" alt="Kritisi - Security&#0032;Audit&#0032;Explorer&#0032;for&#0032;Solidity | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
       <div class="mb-8 flex justify-center">
         <UInput
           v-model="newContractAddress"
@@ -80,6 +80,7 @@
           @update:model-value="changePage"
           :prev-button="{ icon: 'i-heroicons-arrow-small-left-20-solid', label: 'Prev', color: 'gray' }"
           :next-button="{ icon: 'i-heroicons-arrow-small-right-20-solid', trailing: true, label: 'Next', color: 'gray' }"
+          :disabled="contractStore.isLoadingData"
         />
       </div>
 
