@@ -6,7 +6,10 @@ export default defineEventHandler(async (event) => {
     where: {
       isScanned: false
     },
-    take: 10
+    take: 10,
+    orderBy: {
+      createdAt: 'asc'
+    }
   });
   if (contracts.length > 0) {
     var isLoopInterval = false;

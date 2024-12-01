@@ -11,7 +11,10 @@ export default defineEventHandler(async (event) => {
             score: null,
             type: TypeContract.OTHER
         },
-        take: 10
+        take: 10,
+        orderBy: {
+            createdAt: 'asc'
+        }
     });
     if (contracts.length > 0) {
         var isLoopInterval = false;

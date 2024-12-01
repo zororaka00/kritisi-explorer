@@ -9,7 +9,10 @@ export default defineEventHandler(async (event) => {
       contractCreator: null,
       contractTxHash: null
     },
-    take: 5
+    take: 5,
+    orderBy: {
+      createdAt: 'asc'
+    }
   });
   if (contracts.length > 0) {
     const config = useRuntimeConfig();
