@@ -35,3 +35,11 @@ Locally preview production build:
 # bun
 bun run preview
 ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any questions or suggestions, please contact me at [rakawidhiantoro@gmail.com](mailto:rakawidhiantoro@gmail.com).
