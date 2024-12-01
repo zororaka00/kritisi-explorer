@@ -10,6 +10,7 @@ export const useContractStore = defineStore('contract', {
     isLoadingData: false,
     currentPage: 1,
     totalPages: 1,
+    totalData: 0,
     limit: 10,
     contracts: [] as IContract[],
     dataDetailContract: null as IDetailContract | null
@@ -49,6 +50,7 @@ export const useContractStore = defineStore('contract', {
           if (res.status == 200) {
             this.currentPage = res.currentPage;
             this.totalPages = res.totalPages;
+            this.totalData = res.totalData;
             this.contracts = res.data?.length > 0 ? res.data.map((data: any) => ({
               ...data,
               date: general.dateToLocale(data.date)

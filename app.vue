@@ -11,8 +11,7 @@
       />
 
       <h1 class="text-3xl font-bold mb-8 text-center">Security Audit Explorer for Solidity</h1>
-
-      <!-- Input Form -->
+      <a class="mb-8 flex justify-center" href="https://www.producthunt.com/posts/kritisi?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-kritisi" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=665521&theme=light" alt="Kritisi - Security&#0032;Audit&#0032;Explorer&#0032;for&#0032;Solidity | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
       <div class="mb-8 flex justify-center">
         <UInput
           v-model="newContractAddress"
@@ -76,9 +75,11 @@
       <div class="mt-4 flex justify-center">
         <UPagination
           v-model="contractStore.currentPage"
-          :total="totalFilteredPages"
-          :page-count="5"
-          @change="changePage"
+          :total="contractStore.totalData"
+          :page-count="contractStore.limit"
+          @update:model-value="changePage"
+          :prev-button="{ icon: 'i-heroicons-arrow-small-left-20-solid', label: 'Prev', color: 'gray' }"
+          :next-button="{ icon: 'i-heroicons-arrow-small-right-20-solid', trailing: true, label: 'Next', color: 'gray' }"
         />
       </div>
 
@@ -138,7 +139,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useContractStore } from '@/stores/contract';
 
 const contractStore = useContractStore();
@@ -158,8 +159,6 @@ const tableHeaders = [
 onMounted(() => {
   contractStore.getContract(1, 10)
 });
-
-const totalFilteredPages = computed(() => Math.ceil(contractStore.contracts.length / contractStore.limit));
 
 const changePage = (page: number) => {
   contractStore.getContract(page, contractStore.limit, searchQuery.value)

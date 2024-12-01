@@ -64,6 +64,7 @@ export default defineEventHandler(async (event) => {
             currentPage: page,
             limit: limit,
             totalPages: Math.ceil(allData[1] / limit),
+            totalData: allData[1],
             data: allData[0] ? allData[0].map((contract) => ({
                 id: Number(contract.id),
                 contractAddress: contract.contractAddress,
