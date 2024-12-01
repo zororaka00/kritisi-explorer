@@ -16,6 +16,7 @@ export const useContractStore = defineStore('contract', {
   }),
   actions: {
     addContract(contractAddress: `0x${string}`) {
+      this.isLoadingData = true;
       const general = useGeneralStore();
       if (isAddress(contractAddress)) {
         $fetch(`/api/add`, {
@@ -25,15 +26,19 @@ export const useContractStore = defineStore('contract', {
           }
         }).then((res) => {
           if (res.status == 200) {
-            general.showToast('success', 'Contract added successfully');
+            general.showToast('success', 'Contract added successfully and queued for audit');
+            this.isLoadingData = false;
           } else {
             general.showToast('error', res.message);
+            this.isLoadingData = false;
           }
         }).catch(() => {
           general.showToast('error', 'Internal server error');
+          this.isLoadingData = false;
         });
       } else {
         general.showToast('error', 'Invalid contract address');
+        this.isLoadingData = false;
       }
     },
     getContract(page: number, limit: number, search: string | null = null) {
@@ -59,6 +64,7 @@ export const useContractStore = defineStore('contract', {
         });
     },
     detailContract(contractAddress: `0x${string}`) {
+      this.isLoadingData = true;
       const general = useGeneralStore();
       $fetch(`/api/detail?contractAddress=${contractAddress}`)
         .then((res: any) => {
@@ -68,11 +74,14 @@ export const useContractStore = defineStore('contract', {
               date: general.dateToLocale(res.data.date)
             };
             this.isModalOpen = true;
+            this.isLoadingData = false;
           } else {
             general.showToast('error', res.message);
+            this.isLoadingData = false;
           }
         }).catch(() => {
           general.showToast('error', 'Internal server error');
+          this.isLoadingData = false;
         });
     }
   }

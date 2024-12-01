@@ -16,11 +16,13 @@
       <div class="mb-8 flex justify-center">
         <UInput
           v-model="newContractAddress"
-          placeholder="Enter contract address"
+          placeholder="Input new contract address"
+          size="xl"
         />
         <UButton
           @click="contractStore.addContract(newContractAddress as `0x${string}`)"
           class="ml-2"
+          :loading="contractStore.isLoadingData"
         >
           Add Contract
         </UButton>
@@ -35,6 +37,7 @@
         <UButton
           @click="contractStore.getContract(1, 10, searchQuery)"
           class="ml-2"
+          :loading="contractStore.isLoadingData"
         >
           Search
         </UButton>
@@ -61,6 +64,7 @@
               @click="contractStore.detailContract(row.contractAddress)"
               variant="solid"
               color="gray"
+              :loading="contractStore.isLoadingData"
             >
               Details
             </UButton>
