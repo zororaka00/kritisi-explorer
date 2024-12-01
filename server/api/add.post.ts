@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     return {
       status: 500,
-      message: "Internal server error",
+      message: "Too many requests",
       data: null
     };
   }

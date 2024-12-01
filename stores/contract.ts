@@ -32,8 +32,8 @@ export const useContractStore = defineStore('contract', {
             general.showToast('error', res.message);
             this.isLoadingData = false;
           }
-        }).catch(() => {
-          general.showToast('error', 'Internal server error');
+        }).catch((err) => {
+          general.showToast('error', err.message);
           this.isLoadingData = false;
         });
       } else {
