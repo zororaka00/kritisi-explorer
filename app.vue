@@ -98,10 +98,24 @@
                 readonly
               />
             </UFormGroup>
-            <UFormGroup label="Name">
+            <UFormGroup label="Contract Name">
               <UInput
                 color="gray" variant="outline"
                 :model-value="contractStore.dataDetailContract?.contractName"
+                readonly
+              />
+            </UFormGroup>
+            <UFormGroup label="Contract Creator">
+              <UInput
+                color="gray" variant="outline"
+                :model-value="contractStore.dataDetailContract?.contractCreator"
+                readonly
+              />
+            </UFormGroup>
+            <UFormGroup label="Contract Tx Hash">
+              <UInput
+                color="gray" variant="outline"
+                :model-value="contractStore.dataDetailContract?.contractTxHash"
                 readonly
               />
             </UFormGroup>

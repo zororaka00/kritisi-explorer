@@ -23,7 +23,9 @@ model Contract {
   id                BigInt          @id @default(autoincrement())
   fromContractProxy String?
   contractAddress   String          @unique
+  contractTxHash    String?
   contractName      String?
+  contractCreator   String?
   dataObject        Json?
   securityObject    Json?
   score             Int?
