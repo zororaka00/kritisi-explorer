@@ -9,8 +9,8 @@ export interface IContract {
 export interface IDetailContract {
     id: number,
     contractAddress: `0x${string}`,
-    contractCreator: string,
-    contractTxHash: string,
+    contractCreator: `0x${string}`,
+    contractTxHash: `0x${string}`,
     contractName: string,
     score: number,
     securityObject: string,
