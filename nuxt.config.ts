@@ -1,24 +1,9 @@
-import type { CorsOptions } from "nuxt-security";
-
-const isDev = process.env.NODE_ENV !== 'production';
-const allowedOrigins = isDev 
-  ? ['https?://explorer\\.kritisi\\.xyz(/.*)?', 'http://localhost(:\\d+)?(/.*)?']
-  : ['https?://explorer\\.kritisi\\.xyz(/.*)?'];
-
-const corsHandler: CorsOptions = {
-  origin: allowedOrigins,
-  useRegExp: true,
-  methods: ['GET', 'POST'],
-};
-const rateLimiter: any = {
-  tokensPerInterval: 1,
-  interval: 60,
-};
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-security"],
+  modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-api-shield"],
   runtimeConfig: {
+    nodeEnv: process.env.NODE_ENV,
     databaseUrl: process.env.DATABASE_URL,
     etherscanApiKey: process.env.ETHERSCAN_API_KEY,
     arbiscanApiKey: process.env.ARBISCAN_API_KEY,
@@ -27,38 +12,13 @@ export default defineNuxtConfig({
     geminiApiKey: process.env.GEMINI_API_KEY,
     cronSecretKey: process.env.CRON_SECRET_KEY
   },
-  routeRules: {
-    '/api/add': {
-      security: {
-        rateLimiter,
-        corsHandler
-      }
+  nuxtApiShield: {
+    limit: {
+      max: 1,
+      duration: 60,
+      ban: 60
     },
-    '/api/cron/scan': {
-      security: {
-        rateLimiter
-      }
-    },
-    '/api/cron/audit': {
-      security: {
-        rateLimiter
-      }
-    },
-    '/api/cron/detail': {
-      security: {
-        rateLimiter
-      }
-    },
-    '/api/get': {
-      security: {
-        corsHandler
-      }
-    },
-    '/api/detail': {
-      security: {
-        corsHandler
-      }
-    }
+    routes: ["/api/add", "/api/cron/scan", "/api/cron/audit", "/api/cron/detail"]
   },
   app: {
     head: {
