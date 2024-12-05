@@ -5,7 +5,7 @@ import { AuditResult } from '~/types';
 
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig();
-    const cronSecretKey = config.CRON_SECRET_KEY as string;
+    const cronSecretKey = config.cronSecretKey as string;
     const { secret } = getQuery(event);
     if (secret == cronSecretKey) {
         const prisma = new PrismaClient();

@@ -4,8 +4,12 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-api-shield"],
   runtimeConfig: {
     databaseUrl: process.env.DATABASE_URL,
+    etherscanApiKey: process.env.ETHERSCAN_API_KEY,
     arbiscanApiKey: process.env.ARBISCAN_API_KEY,
+    basescanApiKey: process.env.BASESCAN_API_KEY,
+    optimismApiKey: process.env.OPTIMISM_API_KEY,
     geminiApiKey: process.env.GEMINI_API_KEY,
+    cronSecretKey: process.env.CRON_SECRET_KEY
   },
   nuxtApiShield: {
     limit: {
