@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-api-shield"],
   runtimeConfig: {
-    nodeEnv: process.env.VERCEL_ENV ?? process.env.NODE_ENV,
     databaseUrl: process.env.DATABASE_URL,
     etherscanApiKey: process.env.ETHERSCAN_API_KEY,
     arbiscanApiKey: process.env.ARBISCAN_API_KEY,

@@ -1,17 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-import { CorsUtils } from "../utils/cors";
-
 export default defineEventHandler(async (event) => {
-    const corsUtils = new CorsUtils();
-    if (!corsUtils.isAllowedOrigin(event)) {
-      return {
-        status: 403,
-        message: 'Forbidden',
-        data: null
-      };
-    }
-    
     try {
         const prisma = new PrismaClient();
         const { id }: {

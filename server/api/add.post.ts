@@ -1,18 +1,7 @@
 import { ChainEnum, PrismaClient } from "@prisma/client";
 import { isAddress } from "sol-type-check";
 
-import { CorsUtils } from "../utils/cors";
-
 export default defineEventHandler(async (event) => {
-  const corsUtils = new CorsUtils();
-  if (!corsUtils.isAllowedOrigin(event)) {
-    return {
-      status: 403,
-      message: 'Forbidden',
-      data: null
-    };
-  }
-
   try {
     var dataBody: any = await readBody(event);
     const contractAddress = dataBody.contractAddress.toLowerCase();
