@@ -16,14 +16,15 @@ export const useContractStore = defineStore('contract', {
     dataDetailContract: null as IDetailContract | null
   }),
   actions: {
-    addContract(contractAddress: `0x${string}`) {
+    addContract(contractAddress: `0x${string}`, chain: string) {
       this.isLoadingData = true;
       const general = useGeneralStore();
       if (isAddress(contractAddress)) {
         $fetch(`/api/add`, {
           method: 'POST',
           body: {
-            contractAddress
+            contractAddress,
+            chain: chain.toUpperCase()
           }
         }).then((res) => {
           if (res.status == 200) {
@@ -53,6 +54,7 @@ export const useContractStore = defineStore('contract', {
             this.totalData = res.totalData;
             this.contracts = res.data?.length > 0 ? res.data.map((data: any) => ({
               ...data,
+              chain: general.capitalizeEachWord(data.chain),
               date: general.dateToLocale(data.date)
             })) : [];
             this.isLoadingData = false;
@@ -65,15 +67,16 @@ export const useContractStore = defineStore('contract', {
           this.isLoadingData = false;
         });
     },
-    detailContract(contractAddress: `0x${string}`) {
+    detailContract(id: number) {
       this.isLoadingData = true;
       const general = useGeneralStore();
-      $fetch(`/api/detail?contractAddress=${contractAddress}`)
+      $fetch(`/api/detail?id=${id}`)
         .then((res: any) => {
           if (res.status == 200) {
             this.dataDetailContract = {
               ...res.data,
-              date: general.dateToLocale(res.data.date)
+              date: general.dateToLocale(res.data.date),
+              chain: general.capitalizeEachWord(res.data.chain)
             };
             this.isModalOpen = true;
             this.isLoadingData = false;

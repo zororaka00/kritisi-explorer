@@ -1,10 +1,11 @@
-import { PrismaClient, TypeContract } from '@prisma/client';
+import { ChainEnum, PrismaClient, TypeContract } from '@prisma/client';
 
 export default defineEventHandler(async (event) => {
   const prisma = new PrismaClient();
   const contracts = await prisma.contract.findMany({
     where: {
-      isScanned: false
+      isScanned: false,
+      chain: ChainEnum.ARBITRUM
     },
     take: 10,
     orderBy: {

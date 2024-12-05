@@ -19,10 +19,17 @@ enum TypeContract {
   OTHER
 }
 
+enum ChainEnum {
+  ETHEREUM
+  ARBITRUM
+  OPTIMISM
+  BASE
+}
+
 model Contract {
   id                BigInt          @id @default(autoincrement())
   fromContractProxy String?
-  contractAddress   String          @unique
+  contractAddress   String
   contractTxHash    String?
   contractName      String?
   contractCreator   String?
@@ -30,6 +37,7 @@ model Contract {
   securityObject    Json?
   score             Int?
   type              TypeContract?
+  chain             ChainEnum       @default(ARBITRUM)
   isScanned         Boolean?        @default(false)
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt

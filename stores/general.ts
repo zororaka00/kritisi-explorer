@@ -15,6 +15,13 @@ export const useGeneralStore = defineStore('general', {
         color: type == 'success' ? 'green' : type == 'error' ? 'red' : 'blue',
         timeout: 3000,
       });
+    },
+    capitalizeEachWord(str: string) {
+      return str
+          .toLowerCase() 
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
     }
   }
 })

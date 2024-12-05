@@ -1,43 +1,39 @@
 import { PrismaClient } from "@prisma/client";
-import { isAddress } from "sol-type-check";
 
 export default defineEventHandler(async (event) => {
     try {
         const prisma = new PrismaClient();
-        const { contractAddress }: {
-            contractAddress: string;
+        const { id }: {
+            id: number;
         } = getQuery(event);
-        if (isAddress(contractAddress)) {
-            const contract = await prisma.contract.findUnique({
-                where: {
-                    contractAddress: contractAddress.toLowerCase(),
-                    isScanned: true,
-                    score: {
-                        gte: 0
-                    }
+        const contract = await prisma.contract.findUnique({
+            where: {
+                id,
+                isScanned: true,
+                score: {
+                    gte: 0
                 }
-            });
-            return {
-                status: 200,
-                message: "Success",
-                data: contract ? {
-                    id: Number(contract?.id),
-                    contractAddress: contract?.contractAddress ?? '', 
-                    contractCreator: contract?.contractCreator ?? '',
-                    contractTxHash: contract?.contractTxHash ?? '',
-                    contractName: contract?.contractName ?? '',
-                    score: contract?.score,
-                    securityObject: contract?.securityObject,
-                    date: contract?.createdAt
-                } : null
-            };
-        } else {
-            return {
-                status: 400,
-                message: "Invalid contract address",
-                data: null
-            };
-        }
+            }
+        });
+        return contract ? {
+            status: 200,
+            message: "Success",
+            data: {
+                id: id,
+                contractAddress: contract?.contractAddress ?? '', 
+                contractCreator: contract?.contractCreator ?? '',
+                contractTxHash: contract?.contractTxHash ?? '',
+                contractName: contract?.contractName ?? '',
+                score: contract?.score,
+                securityObject: contract?.securityObject,
+                chain: contract?.chain,
+                date: contract?.createdAt
+            }
+        } : {
+            status: 404,
+            message: "Data not found",
+            data: null
+        };
     } catch (error) {
         return {
             status: 500,

@@ -3,6 +3,7 @@ export interface IContract {
     contractAddress: `0x${string}`,
     contractName: string,
     score: number,
+    chain: string,
     date: string
 }
 
@@ -14,6 +15,7 @@ export interface IDetailContract {
     contractName: string,
     score: number,
     securityObject: string,
+    chain: string,
     date: string
 }
   

@@ -18,8 +18,16 @@
           placeholder="Input new contract address"
           size="xl"
         />
+        <USelect
+          v-model="selectedChain"
+          :options="chainOptions"
+          placeholder="Select chain"
+          class="ml-2"
+          size="xl"
+          :ui="{ width: 'w-40' }"
+        />
         <UButton
-          @click="contractStore.addContract(newContractAddress as `0x${string}`)"
+          @click="contractStore.addContract(newContractAddress as `0x${string}`, selectedChain)"
           class="ml-2"
           :loading="contractStore.isLoadingData"
         >
@@ -60,12 +68,12 @@
           </template>
           <template #actions-data="{ row }">
             <UButton
-              @click="contractStore.detailContract(row.contractAddress)"
+              @click="contractStore.detailContract(row.id)"
               variant="solid"
               color="gray"
               :loading="contractStore.isLoadingData"
             >
-              Details
+              Detail
             </UButton>
           </template>
         </UTable>
@@ -126,6 +134,13 @@
                 readonly
               />
             </UFormGroup>
+            <UFormGroup label="Chain">
+              <UInput
+                color="gray" variant="outline"
+                :model-value="contractStore.dataDetailContract?.chain"
+                readonly
+              />
+            </UFormGroup>
             <UFormGroup label="Result">
               <UTextarea
                 color="gray" variant="outline" :rows="10"
@@ -160,6 +175,13 @@ import { useContractStore } from '@/stores/contract';
 const contractStore = useContractStore();
 
 const newContractAddress = ref('');
+const selectedChain = ref('ARBITRUM');
+const chainOptions = [
+  { label: 'Ethereum', value: 'ETHEREUM' },
+  { label: 'Arbitrum', value: 'ARBITRUM' },
+  { label: 'Optimism', value: 'OPTIMISM' },
+  { label: 'Base', value: 'BASE' }
+];
 const searchQuery = ref('');
 
 const tableHeaders = [
@@ -167,6 +189,7 @@ const tableHeaders = [
   { key: 'contractAddress', label: 'Contract Address' },
   { key: 'contractName', label: 'Contract Name' },
   { key: 'score', label: 'Security Score' },
+  { key: 'chain', label: 'Chain' },
   { key: 'date', label: 'Date Added' },
   { key: 'actions', label: 'Actions' }
 ];
@@ -179,4 +202,3 @@ const changePage = (page: number) => {
   contractStore.getContract(page, contractStore.limit, searchQuery.value)
 };
 </script>
-

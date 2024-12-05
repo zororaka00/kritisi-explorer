@@ -46,6 +46,7 @@ export default defineEventHandler(async (event) => {
                     contractAddress: true,
                     contractName: true,
                     score: true,
+                    chain: true,
                     createdAt: true
                 }
             }),
@@ -70,6 +71,7 @@ export default defineEventHandler(async (event) => {
                 contractAddress: contract.contractAddress,
                 contractName: contract.contractName,
                 score: contract.score,
+                chain: contract.chain,
                 date: contract.createdAt
             })) : []
         };
