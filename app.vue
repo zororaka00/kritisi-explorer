@@ -5,7 +5,7 @@
       <UAlert
         icon="i-heroicons-information-circle"
         title="INFORMATION"
-        description="This is a BETA version of the Security Audit Explorer for Solidity. Only support single file Solidity & Arbitrum Chain."
+        description="This is a BETA version of the Security Audit Explorer for Solidity. Supports single file Solidity contracts across Ethereum, Arbitrum, Base, and Optimism networks."
         variant="soft"
         color="orange"
       />
