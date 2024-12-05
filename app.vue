@@ -28,7 +28,7 @@
           />
           <UButton
             @click="contractStore.addContract(newContractAddress as `0x${string}`, selectedChain)"
-            class="sm:ml-2"
+            class="sm:ml-2 min-w-[120px] flex items-center justify-center"
             :loading="contractStore.isLoadingData"
           >
             Add Contract
@@ -44,7 +44,7 @@
           />
           <UButton
             @click="contractStore.getContract(1, 10, searchQuery)"
-            class="sm:ml-2"
+            class="sm:ml-2 min-w-[120px] flex items-center justify-center"
             :loading="contractStore.isLoadingData"
           >
             Search
