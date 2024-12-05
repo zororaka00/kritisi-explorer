@@ -2,8 +2,8 @@ import type { CorsOptions } from "nuxt-security";
 
 const isDev = process.env.NODE_ENV !== 'production';
 const allowedOrigins = isDev 
-  ? ['^https?://explorer\\.kritisi\\.xyz$', '^http://localhost(:\\d+)?$']
-  : ['^https?://explorer\\.kritisi\\.xyz$'];
+  ? ['https?://explorer\\.kritisi\\.xyz(/.*)?', 'http://localhost(:\\d+)?(/.*)?']
+  : ['https?://explorer\\.kritisi\\.xyz(/.*)?'];
 
 const corsHandler: CorsOptions = {
   origin: allowedOrigins,
