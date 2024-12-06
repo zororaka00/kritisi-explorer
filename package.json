@@ -22,6 +22,7 @@
   "dependencies": {
     "@prisma/client": "^6.0.0",
     "nuxt-api-shield": "^0.8.0",
-    "sol-type-check": "^1.0.2"
+    "sol-type-check": "^1.0.2",
+    "viem": "^2.21.54"
   }
 }
