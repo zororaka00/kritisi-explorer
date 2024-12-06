@@ -60,7 +60,7 @@
               {{ (contractStore.currentPage - 1) * contractStore.limit + index + 1 }}
             </template>
             <template #contractAddress-data="{ row }">
-              <a :href="`https://arbiscan.io/address/${row.contractAddress}`" target="_blank" class="break-all">{{ row.contractAddress }}</a>
+              <a :href="generalStore.toExplorer(row.chain.toLowerCase(), row.contractAddress)" target="_blank" class="break-all">{{ row.contractAddress }}</a>
             </template>
             <template #score-data="{ row }">
               <span :class="row.score > 50 ? 'text-green-600' : 'text-red-600'">

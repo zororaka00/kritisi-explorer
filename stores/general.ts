@@ -28,6 +28,17 @@ export const useGeneralStore = defineStore('general', {
           .split(' ')
           .map(word => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ');
+    },
+    toExplorer(chain: 'ethereum' | 'arbitrum' | 'optimism' | 'base', contractAddress: `0x${string}`) {
+      if (chain == 'ethereum') {
+        return `https://etherscan.io/address/${contractAddress}`;
+      } else if (chain == 'arbitrum') {
+        return `https://arbiscan.io/address/${contractAddress}`;
+      } else if (chain == 'optimism') {
+        return `https://optimistic.etherscan.io/address/${contractAddress}`;
+      } else if (chain == 'base') {
+        return `https://basescan.org/address/${contractAddress}`;
+      }
     }
   }
 })
