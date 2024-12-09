@@ -23,9 +23,9 @@ export default defineEventHandler(async (event) => {
             data: null
           };
         } else {
-          const web3Utils = new Web3Utils(chain);
-          const isContract = await web3Utils.isContractAddress(contractAddress);
-          if (isContract) {
+          // const web3Utils = new Web3Utils(chain);
+          // const isContract = await web3Utils.isContractAddress(contractAddress);
+          // if (isContract) {
             await prisma.contract.create({
               data: {
                 contractAddress: contractAddress.toLowerCase(),
@@ -37,13 +37,13 @@ export default defineEventHandler(async (event) => {
               message: "Success",
               data: null
             };
-          } else {
-            return {
-              status: 400,
-              message: "Invalid contract address",
-              data: null
-            };
-          }
+          // } else {
+          //   return {
+          //     status: 400,
+          //     message: "Invalid contract address",
+          //     data: null
+          //   };
+          // }
         }
       } else {
         return {
